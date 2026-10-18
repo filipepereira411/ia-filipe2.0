@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filipe IA 2.0 - Chat</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .chat-container {
+            width: 400px;
+            height: 500px;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        .chat-header {
+            background: #1a73e8;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+        .chat-messages {
+            flex: 1;
+            padding: 15px;
+            overflow-y: auto;
+            background: #fdfdfd;
+        }
+        .message {
+            margin-bottom: 12px;
+            padding: 10px 14px;
+            border-radius: 8px;
+            max-width: 75%;
+            font-size: 0.95em;
+        }
+        .message.bot {
+            background: #e8f0fe;
+            color: #1a73e8;
+            align-self: flex-start;
+        }
+        .chat-input-area {
+            display: flex;
+            border-top: 1px solid #eee;
+            padding: 10px;
+            background: #fff;
+        }
+        .chat-input-area input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 20px;
+            outline: none;
+        }
+        .chat-input-area button {
+            background: #1a73e8;
+            color: white;
+            border: none;
+            padding: 0 15px;
+            margin-left: 8px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="chat-container">
+    <div class="chat-header">
+        Filipe IA 2.0 🌐
+    </div>
+    <div class="chat-messages" id="chatBox">
+        <div class="message bot">Olá! Eu sou o Filipe IA 2.0. Como posso ajudar-te a pesquisar na internet hoje?</div>
+    </div>
+    <div class="chat-input-area">
+        <input type="text" id="userInput" placeholder="Escreve a tua mensagem aqui...">
+        <button onclick="sendMessage()">Enviar</button>
+    </div>
+</div>
+
+<script>
+    function sendMessage() {
+        const input = document.getElementById('userInput');
+        const chatBox = document.getElementById('chatBox');
+        
+        if (input.value.trim() !== '') {
+            // Mensagem do Utilizador
+            const userDiv = document.createElement('div');
+            userDiv.className = 'message';
+            userDiv.style.background = '#1a73e8';
+            userDiv.style.color = 'white';
+            userDiv.style.alignSelf = 'flex-end';
+            userDiv.style.marginLeft = 'auto';
+            userDiv.innerText = input.value;
+            chatBox.appendChild(userDiv);
+            
+            // Limpar input
+            const currentQuery = input.value;
+            input.value = '';
+            
+            // Simulação de resposta do Bot (Aqui ligaria a uma API real)
+            setTimeout(() => {
+                const botDiv = document.createElement('div');
+                botDiv.className = 'message bot';
+                botDiv.innerText = `A procurar na NET por: "${currentQuery}"...`;
+                chatBox.appendChild(botDiv);
+                chatBox.scrollTop = chatBox.scrollHeight;
+            }, 800);
+            
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+    }
+</script>
+
+</body>
+</html>
